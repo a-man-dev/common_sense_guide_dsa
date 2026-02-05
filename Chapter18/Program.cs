@@ -35,6 +35,15 @@ Console.WriteLine("BFS");
 BFStraverse(a);
 // Complexity of DFS/DFS O(V+2E) = O(V+E)
 
+var dallas = new WeightedGraphVertex("Dallas");
+var toronto = new WeightedGraphVertex("Toronto");
+dallas.AddAdjacentVertex(toronto, 138);
+toronto.AddAdjacentVertex(dallas, 216);
+
+
+
+
+
 
 void DFStraverse(Vertex vertex, Dictionary<string, bool> visitedVertices = null) {
 	visitedVertices ??= new();
@@ -93,6 +102,20 @@ void BFStraverse(Vertex startVertex) {
 	}
 
 	Console.WriteLine($"Visit count => {visitCount}");
+}
+
+class WeightedGraphVertex {
+	public string Value { get; set; }
+	public Dictionary<WeightedGraphVertex> AdjacentVertices { get; set; }
+	
+	public WeightedGraphVertex(string value) {
+		Value = value;
+	}
+
+	public void AddAdjacentVertex(WeightedGraphVertex vertex, int weight) {
+		AdjacentVertices.Add(vertex, weight);
+	}
+	
 }
 
 class Vertex {
