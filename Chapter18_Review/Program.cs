@@ -26,6 +26,15 @@ d.AddAdjacentVertex(g);
 
 DFStraverse(a);
 
+Console.WriteLine("_-_-_");
+var dallas = new WeightedGraphVertex("Dallas");
+var toronto = new WeightedGraphVertex("Toronto");
+
+dallas.AddAdjacentVertex(toronto, 138);
+toronto.AddAdjacentVertex(dallas, 216);
+
+
+
 Vertex DFS(Vertex vertex, string searchValue, Dictionary<string, bool> visitedVertices = null) {
 	visitedVertices ??= new();
 
@@ -59,6 +68,20 @@ void DFStraverse(Vertex vertex, Dictionary<string, bool> visitedVertices = null)
 		if (visitedVertices.ContainsKey(v.Value))
 			continue;
 		DFStraverse(v, visitedVertices);
+	}
+}
+
+class WeightedGraphVertex {
+	public string Value { get; set; }
+	public Dictionary<WeightedGraphVertex, int> AdjacentVertices { get; set; }
+
+	public WeightedGraphVertex(string value) {
+		Value = value;
+		AdjacentVertices = new();
+	}
+
+	public void AddAdjacentVertex(WeightedGraphVertex vertex, int weight) {
+		AdjacentVertices.Add(vertex, weight);
 	}
 }
 
