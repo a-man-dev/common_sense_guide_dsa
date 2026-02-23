@@ -33,7 +33,21 @@ var toronto = new WeightedGraphVertex("Toronto");
 dallas.AddAdjacentVertex(toronto, 138);
 toronto.AddAdjacentVertex(dallas, 216);
 
+Console.WriteLine("Dijkstras algo section start!");
+var atlanta = new City("Atlanta");
+var boston = new City("Boston");
+var chicago = new City("Chicago");
+var denver  = new City("Denver");
+var el_paso = new City("El Paso");
 
+atlanta.AddRoute(boston, 100);
+atlanta.AddRoute(denver, 160);
+boston.AddRoute(chicago, 120);
+boston.AddRoute(denver, 180);
+chicago.AddRoute(el_paso, 80);
+denver.AddRoute(chicago, 40);
+denver.AddRoute(el_paso, 140);
+el_paso.AddRoute(boston, 100);
 
 Vertex DFS(Vertex vertex, string searchValue, Dictionary<string, bool> visitedVertices = null) {
 	visitedVertices ??= new();
@@ -68,6 +82,20 @@ void DFStraverse(Vertex vertex, Dictionary<string, bool> visitedVertices = null)
 		if (visitedVertices.ContainsKey(v.Value))
 			continue;
 		DFStraverse(v, visitedVertices);
+	}
+}
+
+class City {
+	public string Name { get; set; }
+	public Dictionary<City, int> Routes { get; set; }
+
+	public City(string name) {
+		Name = name;
+		Routes = new();
+	}
+
+	public void AddRoute(City city, int price) {
+		Routes.Add(city, price);
 	}
 }
 
