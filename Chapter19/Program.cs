@@ -27,5 +27,5 @@ Reverse(words).PrintElements();
 Version   | Time Complexity   | Space Complexity (How much extra space allocated)
 #1			 	O(n)		    	O(n)
 #2				O(n)				O(1)
-#3				
+#3				O(n)                O(n) for call stack	
 */
